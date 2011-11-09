@@ -1,0 +1,10 @@
+<div class="microcomment_default<?php echo $this->class; ?>" id="<?php echo $this->id; ?>">
+    <p class="info">
+        <img class="avatar" src="<?php if($this->avatar != ''): ?><?php echo $this->avatar; ?><?php else: ?>tl_files/avatars/default64.png<?php endif; ?>" alt="<?php echo $this->name; ?>" />
+        <span class="name"><?php echo $this->name; ?></span>
+        <span class="date"><?php echo $this->datim; ?></span>
+    </p>
+    <div class="microcomment">
+        <?php echo $this->comment; ?>
+    </div>
+</div>

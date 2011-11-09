@@ -1,0 +1,46 @@
+<div class="<?php echo $this->class; ?> ce_microcomments block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+    <div class="ce_microcomments_inner">
+        <?php if ($this->headline): ?>
+            <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+        <?php endif; ?>
+        <?php if($this->isloggedIn): ?>
+            <!-- indexer::stop -->
+            <div class="form">
+                <?php if ($this->confirm): ?>
+                    <p class="confirm"><?php echo $this->confirm; ?></p>
+                <?php else: ?>
+                    <form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" method="post">
+                        <div class="formbody">
+                            {{avatar}}
+                            <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
+                            <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
+                            <?php echo $this->messages; ?>
+                            <div class="widget">
+                                <?php echo $this->fields['comment']->generateWithError(); ?> <label for="ctrl_<?php echo $this->fields['comment']->id; ?>" class="invisible"><?php echo $this->fields['comment']->label; ?></label>
+                            </div>
+                            <div class="submit_container">
+                                <input type="submit" class="submit" value="&raquo;">
+                            </div>
+                        </div>
+                    </form>
+                    <?php if ($this->hasError): ?>
+                        <script type="text/javascript">
+                            /* <![CDATA[ */
+                            try {
+                                window.scrollTo(null, ($('<?php echo $this->formId; ?>').getElement('p.error').getPosition().y - 20));
+                            } catch(e) {}
+                            /* ]]> */
+                        </script>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+            <!-- indexer::continue -->
+        <?php endif; ?>
+        <div class="comments">
+            <?php foreach ($this->comments as $comment) echo $comment; ?>
+        </div>
+        <div class="clear"></div>
+        <?php echo $this->pagination; ?>
+    </div>
+</div>
+<div class="clear"></div>
