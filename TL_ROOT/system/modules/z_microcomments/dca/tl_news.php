@@ -27,101 +27,101 @@
  * @license    LGPLv3
  */
 
-
-/**
- * Add palette to tl_news
- */
-$GLOBALS['TL_DCA']['tl_news']['palettes']['__selector__'][]      = 'addMicroComments';
-$GLOBALS['TL_DCA']['tl_news']['subpalettes']['addMicroComments'] = 'com_micro_order,com_micro_perPage,com_micro_template';
-foreach($GLOBALS['TL_DCA']['tl_news']['palettes'] as $k => $v)
+if(isset($GLOBALS['TL_DCA']['tl_news']) && is_array($GLOBALS['TL_DCA']['tl_news']))
 {
-    $GLOBALS['TL_DCA']['tl_news']['palettes'][$k] = str_replace('addEnclosure;', 'addEnclosure;{microcomment_legend:hide},addMicroComments;', $GLOBALS['TL_DCA']['tl_news']['palettes'][$k]);
-}
+    /**
+     * Add palette to tl_news
+     */
+    $GLOBALS['TL_DCA']['tl_news']['palettes']['__selector__'][]      = 'addMicroComments';
+    $GLOBALS['TL_DCA']['tl_news']['subpalettes']['addMicroComments'] = 'com_micro_order,com_micro_perPage,com_micro_template';
+    foreach($GLOBALS['TL_DCA']['tl_news']['palettes'] as $k => $v)
+    {
+        $GLOBALS['TL_DCA']['tl_news']['palettes'][$k] = str_replace('addEnclosure;', 'addEnclosure;{microcomment_legend:hide},addMicroComments;', $GLOBALS['TL_DCA']['tl_news']['palettes'][$k]);
+    }
 
-
-/**
- * Add fields to tl_news
- */
-$GLOBALS['TL_DCA']['tl_news']['fields']['addMicroComments'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_news']['addMicroComments'],
-    'exclude'                 => true,
-    'filter'                  => true,
-    'inputType'               => 'checkbox',
-    'eval'                    => array('submitOnChange'=>true)
-);
-
-$GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_order'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_order'],
-    'default'                 => 'descending',
-    'exclude'                 => true,
-    'inputType'               => 'select',
-    'options'                 => array('ascending', 'descending'),
-    'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-    'eval'                    => array('tl_class'=>'w50')
-);
-
-$GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_perPage'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_perPage'],
-    'default'                 => 0,
-    'exclude'                 => true,
-    'inputType'               => 'text',
-    'eval'                    => array('rgxp'=>'digit', 'tl_class'=>'w50')
-);
-
-$GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_template'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_template'],
-    'default'                 => 'com_micro_default',
-    'exclude'                 => true,
-    'inputType'               => 'select',
-    'options_callback'        => array('tl_news_microcomments', 'getCommentsTemplates')
-);
-
-
-/**
- * Class tl_news_microcomments
- *
- * Provide miscellaneous methods that are used by the data configuration array.
- * @copyright  Dominik Zogg 2011
- * @author     Dominik Zogg <http://www.dominik-zogg.ch>
- * @package    Controller
- */
-class tl_news_microcomments extends Backend
-{
 
     /**
-     * Return all comments templates as array
-     * @param object
-     * @return array
+     * Add fields to tl_news
      */
-    public function getCommentsTemplates(DataContainer $dc)
+    $GLOBALS['TL_DCA']['tl_news']['fields']['addMicroComments'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_news']['addMicroComments'],
+        'exclude'                 => true,
+        'filter'                  => true,
+        'inputType'               => 'checkbox',
+        'eval'                    => array('submitOnChange'=>true)
+    );
+
+    $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_order'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_order'],
+        'default'                 => 'descending',
+        'exclude'                 => true,
+        'inputType'               => 'select',
+        'options'                 => array('ascending', 'descending'),
+        'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+        'eval'                    => array('tl_class'=>'w50')
+    );
+
+    $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_perPage'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_perPage'],
+        'default'                 => 0,
+        'exclude'                 => true,
+        'inputType'               => 'text',
+        'eval'                    => array('rgxp'=>'digit', 'tl_class'=>'w50')
+    );
+
+    $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_template'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_template'],
+        'default'                 => 'com_micro_default',
+        'exclude'                 => true,
+        'inputType'               => 'select',
+        'options_callback'        => array('tl_news_microcomments', 'getCommentsTemplates')
+    );
+
+
+    /**
+     * Class tl_news_microcomments
+     *
+     * Provide miscellaneous methods that are used by the data configuration array.
+     * @copyright  Dominik Zogg 2011
+     * @author     Dominik Zogg <http://www.dominik-zogg.ch>
+     * @package    Controller
+     */
+    class tl_news_microcomments extends Backend
     {
-        $intPid = $dc->activeRecord->pid;
 
-        if ($this->Input->get('act') == 'overrideAll')
+        /**
+         * Return all comments templates as array
+         * @param object
+         * @return array
+         */
+        public function getCommentsTemplates(DataContainer $dc)
         {
-            $intPid = $this->Input->get('id');
+            $intPid = $dc->activeRecord->pid;
+
+            if ($this->Input->get('act') == 'overrideAll')
+            {
+                $intPid = $this->Input->get('id');
+            }
+
+            // Get the page ID
+            $objArticle = $this->Database->prepare("SELECT pid FROM tl_news WHERE id=?")
+                                         ->limit(1)
+                                         ->execute($intPid);
+
+            // Inherit the page settings
+            $objPage = $this->getPageDetails($objArticle->pid);
+
+            // Get the theme ID
+            $objLayout = $this->Database->prepare("SELECT pid FROM tl_layout WHERE id=? OR fallback=1 ORDER BY fallback")
+                                        ->limit(1)
+                                        ->execute($objPage->layout);
+
+            // Return all gallery templates
+            return $this->getTemplateGroup('com_micro_', $objLayout->pid);
         }
-
-        // Get the page ID
-        $objArticle = $this->Database->prepare("SELECT pid FROM tl_news WHERE id=?")
-                                     ->limit(1)
-                                     ->execute($intPid);
-
-        // Inherit the page settings
-        $objPage = $this->getPageDetails($objArticle->pid);
-
-        // Get the theme ID
-        $objLayout = $this->Database->prepare("SELECT pid FROM tl_layout WHERE id=? OR fallback=1 ORDER BY fallback")
-                                    ->limit(1)
-                                    ->execute($objPage->layout);
-
-        // Return all gallery templates
-        return $this->getTemplateGroup('com_micro_', $objLayout->pid);
     }
 }
-
-?>
