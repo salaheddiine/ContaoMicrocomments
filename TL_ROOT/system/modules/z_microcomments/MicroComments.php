@@ -141,16 +141,11 @@ class MicroComments extends Frontend
         $objTemplate->comments = $arrMicrocomments;
         $objTemplate->commentsTotal = $limit ? $objTotal->count : $total;
 
-        // Get the front end user object
-        $this->import('FrontendUser', 'Member');
-
-        // Access control
-        if(!FE_USER_LOGGED_IN)
+        // if not logged stop logic after listing
+        if(!$objTemplate->isloggedIn)
         {
-            $objTemplate->isloggedIn = false;
             return;
         }
-        $objTemplate->isloggedIn = true;
 
         // Microcomment field
         $arrFields['comment'] = array
