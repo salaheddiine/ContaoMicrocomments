@@ -34,6 +34,8 @@ $GLOBALS['TL_LANG']['tl_content']['addMicroComments']       = array('Add microco
 $GLOBALS['TL_LANG']['tl_content']['com_micro_order']        = array('Sort order', 'Please choose the sort order.');
 $GLOBALS['TL_LANG']['tl_content']['com_micro_perPage']      = array('Items per page', 'The number of comments per page. Set to 0 to disable pagination.');
 $GLOBALS['TL_LANG']['tl_content']['com_micro_template']     = array('Microcomments template', 'Here you can select the microcomments template.');
+$GLOBALS['TL_LANG']['tl_content']['com_micro_protected']    = array('Protect mircocomments', 'Restrict microcomments access to certain member groups.');
+$GLOBALS['TL_LANG']['tl_content']['com_micro_groups']       = array('Allowed member groupsn', 'These groups can access microcomments.');
 
 /**
  * Legends
