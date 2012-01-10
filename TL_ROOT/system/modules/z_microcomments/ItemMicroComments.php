@@ -55,6 +55,8 @@ class ItemMicroComments extends ContentElement
         $objConfig->perPage = $objParent->com_micro_perPage;
         $objConfig->order = $objParent->com_micro_order;
         $objConfig->template = $objParent->com_micro_template;
+        $objConfig->protected = $objParent->com_micro_protected;
+        $objConfig->groups = $objParent->com_micro_groups;
         $this->Config = $objConfig;
     }
 

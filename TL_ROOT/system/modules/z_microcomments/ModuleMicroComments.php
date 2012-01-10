@@ -79,6 +79,8 @@ class ModuleMicroComments extends Module
         $objConfig->perPage = $this->com_micro_perPage;
         $objConfig->order = $this->com_micro_order;
         $objConfig->template = $this->com_micro_template;
+        $objConfig->protected = $this->com_micro_protected;
+        $objConfig->groups = $this->com_micro_groups;
 
         $this->MicroComments->addMicroCommentsToTemplate($this->Template, $objConfig, 'tl_page', $objPage->id, $GLOBALS['TL_ADMIN_EMAIL']);
     }
