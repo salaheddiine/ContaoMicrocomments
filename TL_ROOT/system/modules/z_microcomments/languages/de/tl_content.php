@@ -35,7 +35,7 @@ $GLOBALS['TL_LANG']['tl_content']['com_micro_order']        = array('Sortierreih
 $GLOBALS['TL_LANG']['tl_content']['com_micro_perPage']      = array('Elemente pro Seite', 'Die Anzahl an Kommentaren pro Seite. Geben Sie 0 ein, um den automatischen Seitenumbruch zu deaktivieren.');
 $GLOBALS['TL_LANG']['tl_content']['com_micro_template']     = array('Kleinst-Kommentartemplate', 'Hier können Sie das Kleinst-Kommentartemplate auswählen.');
 $GLOBALS['TL_LANG']['tl_content']['com_micro_protected']    = array('Kleinst-Kommentate schützen', 'Den Kleinst-Kommentate-Zugriff auf bestimmte Mitgliedergruppen beschränken.');
-$GLOBALS['TL_LANG']['tl_content']['com_micro_groups']       = array('Erlaubte Mitgliedergruppen', 'Diese Gruppen dürfen auf die Seite zugreifen.');
+$GLOBALS['TL_LANG']['tl_content']['com_micro_groups']       = array('Erlaubte Mitgliedergruppen', 'Diese Gruppen dürfen auf die Kleinst-Kommentate zugreifen.');
 
 /**
  * Legends
