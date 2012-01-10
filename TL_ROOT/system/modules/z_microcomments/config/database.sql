@@ -23,7 +23,9 @@ CREATE TABLE `tl_calendar_events` (
   `addMicroComments` char(1) NOT NULL default '',
   `com_micro_order` varchar(32) NOT NULL default '',
   `com_micro_perPage` smallint(5) unsigned NOT NULL default '0',
-  `com_micro_template` varchar(32) NOT NULL default ''
+  `com_micro_template` varchar(32) NOT NULL default '',
+  `com_micro_protected` char(1) NOT NULL default '',
+  `com_micro_groups` blob NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -33,7 +35,9 @@ CREATE TABLE `tl_calendar_events` (
 CREATE TABLE `tl_content` (
   `com_micro_order` varchar(32) NOT NULL default '',
   `com_micro_perPage` smallint(5) unsigned NOT NULL default '0',
-  `com_micro_template` varchar(32) NOT NULL default ''
+  `com_micro_template` varchar(32) NOT NULL default '',
+  `com_micro_protected` char(1) NOT NULL default '',
+  `com_micro_groups` blob NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -43,7 +47,9 @@ CREATE TABLE `tl_content` (
 CREATE TABLE `tl_module` (
   `com_micro_order` varchar(32) NOT NULL default '',
   `com_micro_perPage` smallint(5) unsigned NOT NULL default '0',
-  `com_micro_template` varchar(32) NOT NULL default ''
+  `com_micro_template` varchar(32) NOT NULL default '',
+  `com_micro_protected` char(1) NOT NULL default '',
+  `com_micro_groups` blob NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -54,5 +60,7 @@ CREATE TABLE `tl_news` (
   `addMicroComments` char(1) NOT NULL default '',
   `com_micro_order` varchar(32) NOT NULL default '',
   `com_micro_perPage` smallint(5) unsigned NOT NULL default '0',
-  `com_micro_template` varchar(32) NOT NULL default ''
+  `com_micro_template` varchar(32) NOT NULL default '',
+  `com_micro_protected` char(1) NOT NULL default '',
+  `com_micro_groups` blob NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
