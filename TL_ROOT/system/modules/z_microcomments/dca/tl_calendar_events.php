@@ -33,7 +33,7 @@ if(isset($GLOBALS['TL_DCA']['tl_calendar_events']) && is_array($GLOBALS['TL_DCA'
      * Add palette to tl_calendar_events
      */
     $GLOBALS['TL_DCA']['tl_calendar_events']['palettes']['__selector__'][]      = 'addMicroComments';
-    $GLOBALS['TL_DCA']['tl_calendar_events']['subpalettes']['addMicroComments'] = 'com_micro_order,com_micro_perPage,com_micro_template';
+    $GLOBALS['TL_DCA']['tl_calendar_events']['subpalettes']['addMicroComments'] = 'com_micro_order,com_micro_perPage,com_micro_template,com_micro_protected,com_micro_groups';
     foreach($GLOBALS['TL_DCA']['tl_calendar_events']['palettes'] as $k => $v)
     {
         $GLOBALS['TL_DCA']['tl_calendar_events']['palettes'][$k] = str_replace('addEnclosure;', 'addEnclosure;{microcomment_legend:hide},addMicroComments;', $GLOBALS['TL_DCA']['tl_calendar_events']['palettes'][$k]);
@@ -81,6 +81,22 @@ if(isset($GLOBALS['TL_DCA']['tl_calendar_events']) && is_array($GLOBALS['TL_DCA'
         'options_callback'        => array('tl_calendar_events_microcomments', 'getCommentsTemplates')
     );
 
+    $GLOBALS['TL_DCA']['tl_calendar_events']['fields']['com_micro_protected'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_calendar_events']['com_micro_protected'],
+        'exclude'                 => true,
+        'inputType'               => 'checkbox',
+        'eval'                    => array('tl_class'=>'w50')
+    );
+
+    $GLOBALS['TL_DCA']['tl_calendar_events']['fields']['com_micro_groups'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_calendar_events']['com_micro_groups'],
+        'exclude'                 => true,
+        'inputType'               => 'checkbox',
+        'foreignKey'              => 'tl_member_group.name',
+        'eval'                    => array('multiple'=>true,'tl_class'=>'w50')
+    );
 
     /**
      * Class tl_calendar_microcomments

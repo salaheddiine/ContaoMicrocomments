@@ -30,7 +30,7 @@
 /**
  * Add palettes to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['microcomments'] = '{title_legend},name,headline,type;{microcomment_legend},com_micro_order,com_micro_perPage;{template_legend:hide},com_micro_template;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['microcomments'] = '{title_legend},name,headline,type;{microcomment_legend},com_micro_order,com_micro_perPage,com_micro_protected,com_micro_groups;{template_legend:hide},com_micro_template;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields to tl_module
@@ -62,6 +62,23 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['com_micro_template'] = array
     'exclude'                 => true,
     'inputType'               => 'select',
     'options_callback'        => array('tl_module_microcomments', 'getCommentsTemplates')
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['com_micro_protected'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_module']['com_micro_protected'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'eval'                    => array('tl_class'=>'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['com_micro_groups'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_module']['com_micro_groups'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'foreignKey'              => 'tl_member_group.name',
+    'eval'                    => array('multiple'=>true,'tl_class'=>'w50')
 );
 
 /**

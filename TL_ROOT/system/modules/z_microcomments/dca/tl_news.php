@@ -33,7 +33,7 @@ if(isset($GLOBALS['TL_DCA']['tl_news']) && is_array($GLOBALS['TL_DCA']['tl_news'
      * Add palette to tl_news
      */
     $GLOBALS['TL_DCA']['tl_news']['palettes']['__selector__'][]      = 'addMicroComments';
-    $GLOBALS['TL_DCA']['tl_news']['subpalettes']['addMicroComments'] = 'com_micro_order,com_micro_perPage,com_micro_template';
+    $GLOBALS['TL_DCA']['tl_news']['subpalettes']['addMicroComments'] = 'com_micro_order,com_micro_perPage,com_micro_template,com_micro_protected,com_micro_groups';
     foreach($GLOBALS['TL_DCA']['tl_news']['palettes'] as $k => $v)
     {
         $GLOBALS['TL_DCA']['tl_news']['palettes'][$k] = str_replace('addEnclosure;', 'addEnclosure;{microcomment_legend:hide},addMicroComments;', $GLOBALS['TL_DCA']['tl_news']['palettes'][$k]);
@@ -80,6 +80,24 @@ if(isset($GLOBALS['TL_DCA']['tl_news']) && is_array($GLOBALS['TL_DCA']['tl_news'
         'inputType'               => 'select',
         'options_callback'        => array('tl_news_microcomments', 'getCommentsTemplates')
     );
+
+    $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_protected'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_news']['com_micro_protected'],
+        'exclude'                 => true,
+        'inputType'               => 'checkbox',
+        'eval'                    => array('tl_class'=>'w50')
+    );
+
+    $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_groups'] = array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_news']['com_micro_groups'],
+        'exclude'                 => true,
+        'inputType'               => 'checkbox',
+        'foreignKey'              => 'tl_member_group.name',
+        'eval'                    => array('multiple'=>true,'tl_class'=>'w50')
+    );
+
 
 
     /**
