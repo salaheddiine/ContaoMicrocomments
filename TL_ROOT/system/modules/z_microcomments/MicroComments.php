@@ -51,6 +51,36 @@ class MicroComments extends Frontend
         global $objPage;
         $this->import('String');
 
+        // unserialize groups
+        $objConfig->groups = unserialize($objConfig->groups);
+
+        // Get the front end user object
+        $this->import('FrontendUser', 'Member');
+
+        // set defaults
+        $objTemplate->isloggedIn = FE_USER_LOGGED_IN;
+        $objTemplate->show = !$objConfig->protected ? true : false;
+
+        // module is protected
+        if($objTemplate->isloggedIn && !$objTemplate->show && is_array($objConfig->groups))
+        {
+            foreach($this->Member->groups as $intGroup)
+            {
+                // chekc if member is in a allowed group
+                if(in_array($intGroup, $objConfig->groups))
+                {
+                    $objTemplate->show = true;
+                    break;
+                }
+            }
+        }
+
+        // if not show stop logic
+        if(!$objTemplate->show)
+        {
+            return;
+        }
+
         $limit = null;
         $arrMicrocomments = array();
 
