@@ -54,7 +54,7 @@ if(isset($GLOBALS['TL_DCA']['tl_news']) && is_array($GLOBALS['TL_DCA']['tl_news'
 
     $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_order'] = array
     (
-        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_order'],
+        'label'                   => &$GLOBALS['TL_LANG']['tl_news']['com_micro_order'],
         'default'                 => 'descending',
         'exclude'                 => true,
         'inputType'               => 'select',
@@ -65,7 +65,7 @@ if(isset($GLOBALS['TL_DCA']['tl_news']) && is_array($GLOBALS['TL_DCA']['tl_news'
 
     $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_perPage'] = array
     (
-        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_perPage'],
+        'label'                   => &$GLOBALS['TL_LANG']['tl_news']['com_micro_perPage'],
         'default'                 => 0,
         'exclude'                 => true,
         'inputType'               => 'text',
@@ -74,7 +74,7 @@ if(isset($GLOBALS['TL_DCA']['tl_news']) && is_array($GLOBALS['TL_DCA']['tl_news'
 
     $GLOBALS['TL_DCA']['tl_news']['fields']['com_micro_template'] = array
     (
-        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['com_micro_template'],
+        'label'                   => &$GLOBALS['TL_LANG']['tl_news']['com_micro_template'],
         'default'                 => 'com_micro_default',
         'exclude'                 => true,
         'inputType'               => 'select',
